@@ -7,7 +7,7 @@ public class DialoguePromptHandler : MonoBehaviour
     [SerializeField] PlayerMovement playerControlScript;
     [SerializeField] GameObject dialogueBox;
     [SerializeField] DialogueHandler dialogueHandler;
-    [SerializeField] string characterName;
+    [SerializeField] Character character;
     [SerializeField] string defaultDialogueOption;
 
     // Update is called once per frame
@@ -24,7 +24,7 @@ public class DialoguePromptHandler : MonoBehaviour
         playerControlScript.enabled = !playerControlScript.isActiveAndEnabled;
         playerControlScript.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
         dialogueBox.SetActive(!dialogueBox.activeInHierarchy);
-        dialogueHandler.name = characterName;
+        dialogueHandler.characterName = character.name;
         dialogueHandler.findDialogue(defaultDialogueOption);
         dialogueHandler.currentCharacterPrompt = this;
     }

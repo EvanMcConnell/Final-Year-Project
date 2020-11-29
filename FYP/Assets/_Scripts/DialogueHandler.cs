@@ -12,7 +12,7 @@ public class DialogueHandler : MonoBehaviour
     [SerializeField] Button[] options;
     public TMPro.TextMeshProUGUI dialogueText, choice1Text, choice2Text;
     XElement[] optionsArray;
-    public string name = "Diana";
+    public string characterName = "Diana";
     public DialoguePromptHandler currentCharacterPrompt;
 
     void OnEnable()
@@ -22,12 +22,12 @@ public class DialogueHandler : MonoBehaviour
 
     public void findDialogue(string id)
     {
-        XElement file = XElement.Load("./Assets/dialogues.xml");
+        XElement file = XElement.Load("./Assets/xml/dialogues.xml");
 
 
         IEnumerable<XElement> dialogues =
             from e in file.Descendants("character")
-            where e.Attribute("name").Value == name
+            where e.Attribute("name").Value == characterName
             from q in e.Descendants("dialogue")
             where q!=null && q.Attribute("id").Value == id
             select q;

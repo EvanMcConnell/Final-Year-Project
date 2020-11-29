@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Transition
   - Shop
+  - Resource
+  - Attack
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -43,10 +46,16 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Background
+  - name: Floor
     uniqueID: 2708675463
     locked: 0
-  - name: Player
+  - name: Groud Effects
+    uniqueID: 1598533905
+    locked: 0
+  - name: Item
+    uniqueID: 2838607421
+    locked: 0
+  - name: Character
     uniqueID: 576037461
     locked: 0
   - name: Top
