@@ -2,13 +2,13 @@
 <dialogues>
 	
 	<character name = "Diana"> 
-		<dialogue id = "00" content= "Hello Stranger! I'm Diana, what brings you here!">
+		<dialogue id = "00" emotion="Neutral" content= "Hello Stranger! I'm Diana, what brings you here!">
 				
 					<choice content= "Hi there, would you know where I can find the golden globe?" target = "2"></choice>
 					<choice content= "Hi there, are you from here, Im kind of lost?" target = "1"></choice>
 				
 		</dialogue>
-		<dialogue id = "01" content= "Yes, Ive been living here for decades, what brings you here?" >
+		<dialogue id = "01" emotion="Frustrated" content= "Yes, Ive been living here for decades, what brings you here?" >
 				
 					<choice content= "I am looking for the golden globe" target = "2"></choice>
 					<choice content= "None of your business!" target = "-1"></choice>

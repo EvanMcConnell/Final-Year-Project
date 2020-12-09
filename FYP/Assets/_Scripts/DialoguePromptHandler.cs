@@ -25,6 +25,7 @@ public class DialoguePromptHandler : MonoBehaviour
         playerControlScript.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
         dialogueBox.SetActive(!dialogueBox.activeInHierarchy);
         dialogueHandler.characterName = character.name;
+        dialogueHandler.possiblePortraits = character.portraits;
         dialogueHandler.findDialogue(defaultDialogueOption);
         dialogueHandler.currentCharacterPrompt = this;
     }

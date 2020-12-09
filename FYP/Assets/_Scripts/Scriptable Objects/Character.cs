@@ -6,5 +6,11 @@ using UnityEngine;
 public class Character : ScriptableObject
 {
     public new string name;
-    public Sprite image;
+
+    /*
+     * - Portraits -
+     * 0 - Neutral
+     * 1 - Frustrated
+     */
+    public Sprite[] portraits;
 }

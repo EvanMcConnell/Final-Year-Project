@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: Diana
   m_EditorClassIdentifier: 
   name: Diana
-  image: {fileID: 0}
+  portraits:
+  - {fileID: 6702539973196343931, guid: 74e3e8ec88fd49d4fb682713d82402f1, type: 3}
+  - {fileID: -7391347004026127290, guid: 74e3e8ec88fd49d4fb682713d82402f1, type: 3}

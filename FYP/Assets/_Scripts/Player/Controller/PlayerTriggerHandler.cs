@@ -7,7 +7,7 @@ public class PlayerTriggerHandler : MonoBehaviour
     [SerializeField] GameObject dialogueBox;
     GameObject prompt;
 
-    void OnTriggerEnter2D(Collider2D coll)
+    void OnTriggerStay2D(Collider2D coll)
     {
         if (coll.gameObject.tag == "Shop")
         {

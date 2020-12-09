@@ -11,9 +11,11 @@ public class DialogueHandler : MonoBehaviour
     string[] optionsText;
     [SerializeField] Button[] options;
     public TMPro.TextMeshProUGUI dialogueText, choice1Text, choice2Text;
-    XElement[] optionsArray;
+    XElement[] optionsArray, foundPortraitsArray;
     public string characterName = "Diana";
     public DialoguePromptHandler currentCharacterPrompt;
+    public Sprite[] possiblePortraits;
+    public Image portrait;
 
     void OnEnable()
     {
@@ -39,6 +41,8 @@ public class DialogueHandler : MonoBehaviour
         {
             dialogueText.text = z.Attribute("content").Value;
             findOptions(z);
+            if (z.Attribute("emotion").Value != null) findPortrait(z);
+            //portrait.sprite = possiblePortraits[1];
         }
 
     }
@@ -67,5 +71,30 @@ public class DialogueHandler : MonoBehaviour
         }*/
     }
 
+
+    void findPortrait(XElement a)
+    {
+        /*IEnumerable<XElement> portraits =
+            from e in a.Descendants()
+            select e;
+
+        foundPortraitsArray = portraits.ToArray();*/
+
+        switch (a.Attribute("emotion").Value)
+        {
+            case "Neutral":
+                portrait.sprite = possiblePortraits[0];
+                break;
+
+            case "Frustrated":
+                portrait.sprite = possiblePortraits[1];
+                break;
+
+            default:
+                portrait.sprite = possiblePortraits[0];
+                break;
+        }
+
+    }
 
 }
