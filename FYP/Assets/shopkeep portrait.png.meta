@@ -8,6 +8,9 @@ TextureImporter:
   - first:
       213: -7391347004026127290
     second: shopkeep portrait_1
+  - first:
+      213: -4241618657456734998
+    second: shopkeep portrait_2
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -141,6 +144,27 @@ TextureImporter:
       bones: []
       spriteID: 9aeb3e4a843935142bfd0bd4a6a5b982
       internalID: -7391347004026127290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shopkeep portrait_2
+      rect:
+        serializedVersion: 2
+        x: 1436
+        y: 193
+        width: 945
+        height: 1790
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb65734cc5f84d14b9f87635701d3956
+      internalID: -4241618657456734998
       vertices: []
       indices: 
       edges: []

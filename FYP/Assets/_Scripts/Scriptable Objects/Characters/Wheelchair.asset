@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 23f0ef4f4055e364cba5d3c57452b843, type: 3}
-  m_Name: Diana
+  m_Name: Wheelchair
   m_EditorClassIdentifier: 
-  name: Diana
+  name: Wheelchair
   portraits:
   - {fileID: 6702539973196343931, guid: 74e3e8ec88fd49d4fb682713d82402f1, type: 3}
   - {fileID: -7391347004026127290, guid: 74e3e8ec88fd49d4fb682713d82402f1, type: 3}
+  - {fileID: -4241618657456734998, guid: 74e3e8ec88fd49d4fb682713d82402f1, type: 3}

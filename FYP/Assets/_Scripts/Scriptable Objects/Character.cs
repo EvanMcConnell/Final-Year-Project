@@ -11,6 +11,7 @@ public class Character : ScriptableObject
      * - Portraits -
      * 0 - Neutral
      * 1 - Frustrated
+     * 2 - Happy
      */
     public Sprite[] portraits;
 }

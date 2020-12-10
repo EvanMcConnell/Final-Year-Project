@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
         yInput = Input.GetAxisRaw("Vertical");
 
         if (xInput != 0 || yInput != 0) { 
-            rb.velocity = xInput!=0 && yInput!=0 ? new Vector2(xInput * (moveSpeed/2), yInput * (moveSpeed/2)) : new Vector2(xInput*moveSpeed, yInput*moveSpeed); 
+            rb.velocity = xInput!=0 && yInput!=0 ? new Vector2(xInput * (moveSpeed*.8f), yInput * (moveSpeed*.8f)) : new Vector2(xInput*moveSpeed, yInput*moveSpeed); 
             anim.SetBool("isWalking", true); 
         } else {
             rb.velocity = new Vector2(0, 0);

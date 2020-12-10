@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dialogues>
 	
-	<character name = "Diana"> 
-		<dialogue id = "00" emotion="Neutral" content= "Hello Stranger! I'm Diana, what brings you here!">
+	<character name = "Wheelchair"> 
+		<dialogue id = "00" emotion="Neutral" content= "What's up kid?">
 				
-					<choice content= "Hi there, would you know where I can find the golden globe?" target = "2"></choice>
-					<choice content= "Hi there, are you from here, Im kind of lost?" target = "1"></choice>
-				
-		</dialogue>
-		<dialogue id = "01" emotion="Frustrated" content= "Yes, Ive been living here for decades, what brings you here?" >
-				
-					<choice content= "I am looking for the golden globe" target = "2"></choice>
-					<choice content= "None of your business!" target = "-1"></choice>
+					<choice content= "[Shop]" target = "shop"></choice>
+					<choice content= "There's something I've been meaning to ask?" target = "1"></choice>
 				
 		</dialogue>
-		<dialogue id = "02" content= "The Golden globe, yes;aaaaaaaaa it is in the yellow house!">
+		<dialogue id = "01" emotion="Frustrated" content= "Ugh, fine. But make it quick, -haven't got all day." >
+				
+					<choice content= "What is it you do around here?" target = "2"></choice>
+					<choice content= "It's nothing, nevermind." target = "0"></choice>
+				
+		</dialogue>
+		<dialogue id = "02" emotion="Happy" content= "The Golden globe, yes;aaaaaaaaa it is in the yellow house!">
 				
 					<choice content= "Thank you!" target = "-1"></choice>
 					<choice content= "Brilliant, would you also know about where to find the yellow house" target = "3"></choice>
 				
 		</dialogue>
-		<dialogue id = "03" content= "Of course, this house is about 100 meters north from here!">
+		<dialogue id = "03" emotion="Happy" content= "Of course, this house is about 100 meters north from here!">
 				
 					<choice content= "Thanks man; much appreciated!" target = "-1"></choice>
 					<choice content= "Fantastic!" target = "-1"></choice>

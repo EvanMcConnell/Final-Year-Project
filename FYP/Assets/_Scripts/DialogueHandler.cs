@@ -14,6 +14,7 @@ public class DialogueHandler : MonoBehaviour
     XElement[] optionsArray, foundPortraitsArray;
     public string characterName = "Diana";
     public DialoguePromptHandler currentCharacterPrompt;
+    public GameObject shopBox;
     public Sprite[] possiblePortraits;
     public Image portrait;
 
@@ -50,6 +51,7 @@ public class DialogueHandler : MonoBehaviour
     public void selectChoice(int button)
     {
         if (optionsArray[button].Attribute("target").Value == "-1") { currentCharacterPrompt.toggleDialogue(); }
+        else if(optionsArray[button].Attribute("target").Value == "shop") { shopBox.SetActive(true); }
         else { findDialogue("0"+optionsArray[button].Attribute("target").Value);
             print("0"+optionsArray[button].Attribute("target").Value); }
     }
@@ -90,11 +92,17 @@ public class DialogueHandler : MonoBehaviour
                 portrait.sprite = possiblePortraits[1];
                 break;
 
+            case "Happy":
+                portrait.sprite = possiblePortraits[2];
+                break;
+
             default:
                 portrait.sprite = possiblePortraits[0];
                 break;
         }
 
     }
+
+    public void closeShopWindow(GameObject window) => window.SetActive(false);
 
 }
