@@ -37,7 +37,7 @@ public class EnemyDamageHandler : MonoBehaviour
     {
         attackTrigger.enabled = true;
         GetComponentInChildren<SpriteRenderer>().enabled = true;
-        yield return new WaitForSecondsRealtime(0.25f);
+        yield return new WaitForEndOfFrame();
         attackTrigger.enabled = false;
         GetComponentInChildren<SpriteRenderer>().enabled = false;
         yield return new WaitForSecondsRealtime(2f);

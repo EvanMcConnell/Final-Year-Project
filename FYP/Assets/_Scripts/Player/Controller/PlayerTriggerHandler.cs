@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerTriggerHandler : MonoBehaviour
 {
-    [SerializeField] GameObject dialogueBox;
+    //[SerializeField] GameObject dialogueBox;
     GameObject prompt;
 
     void OnTriggerStay2D(Collider2D coll)
@@ -13,7 +13,6 @@ public class PlayerTriggerHandler : MonoBehaviour
         {
             try { 
                 prompt = coll.gameObject;
-                print(prompt.name);
                 prompt.GetComponent<DialoguePromptHandler>().enabled = true;
                 prompt.GetComponent<SpriteRenderer>().enabled = true;
             }

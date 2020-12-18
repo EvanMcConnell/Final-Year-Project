@@ -19,7 +19,7 @@ TagManager:
   - 
   - 
   - Background
-  - 
+  - hit
   - 
   - 
   - 
@@ -60,6 +60,9 @@ TagManager:
     locked: 0
   - name: Top
     uniqueID: 3678497829
+    locked: 0
+  - name: Enemy HealthBar
+    uniqueID: 1482708233
     locked: 0
   - name: UI
     uniqueID: 4246297791

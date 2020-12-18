@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using System.Xml.Linq;
 using System.Linq;
 
@@ -17,6 +18,8 @@ public class DialogueHandler : MonoBehaviour
     public GameObject shopBox;
     public Sprite[] possiblePortraits;
     public Image portrait;
+
+    [SerializeField] ResourceManager rm;
 
     void OnEnable()
     {
@@ -50,6 +53,7 @@ public class DialogueHandler : MonoBehaviour
 
     public void selectChoice(int button)
     {
+        EventSystem.current.SetSelectedGameObject(null);
         if (optionsArray[button].Attribute("target").Value == "-1") { currentCharacterPrompt.toggleDialogue(); }
         else if(optionsArray[button].Attribute("target").Value == "shop") { shopBox.SetActive(true); }
         else { findDialogue("0"+optionsArray[button].Attribute("target").Value);
@@ -103,6 +107,12 @@ public class DialogueHandler : MonoBehaviour
 
     }
 
-    public void closeShopWindow(GameObject window) => window.SetActive(false);
+    public void closeShopWindow(GameObject window)
+    {
+        print(EventSystem.current.currentSelectedGameObject.name);
+        window.SetActive(false);
+    }
+
+
 
 }

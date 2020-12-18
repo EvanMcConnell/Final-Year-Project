@@ -5,14 +5,9 @@ using UnityEngine;
 public class ResourceManager : MonoBehaviour
 {
     public int wood = 0, metal = 0, gunpowder = 0;
-    public TMPro.TextMeshProUGUI woodCounter;
-    public TMPro.TextMeshProUGUI metalCounter;
-    public TMPro.TextMeshProUGUI gpowderCounter;
 
-    void updateText(TMPro.TextMeshProUGUI t, string text)
-    {
-        t.text = text;
-    }
+    [SerializeField] HUDManager hud;
+
     void OnTriggerEnter2D(Collider2D col)
     {
         if(col.tag == "Resource")
@@ -24,13 +19,13 @@ public class ResourceManager : MonoBehaviour
                 {
                     case "Wood":
                         wood += r.getQuantity();
-                        updateText(woodCounter, wood.ToString());
+                        hud.updateCounter("woodCounter", wood);
                         Destroy(col.gameObject);
                     break;
 
                     case "Metal":
                         metal += r.getQuantity();
-                        updateText(metalCounter, metal.ToString());
+                        hud.updateCounter("metalCounter", metal);
                         Destroy(col.gameObject);
                         break;
                 }
