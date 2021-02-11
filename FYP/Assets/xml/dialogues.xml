@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dialogues>
 	
-	<character name = "Wheelchair"> 
+	<character name = "Johnson"> 
 		<dialogue id = "00" emotion="Neutral" content= "What's up kid?">
 				
-					<choice content= "[Shop]" target = "shop"></choice>
-					<choice content= "There's something I've been meaning to ask?" target = "1"></choice>
+					<choice content= "Show me what you've got. [Shop]" target = "shop"></choice>
+					<choice content= "There's something I've been meaning to ask." target = "1"></choice>
 				
 		</dialogue>
 		<dialogue id = "01" emotion="Frustrated" content= "Ugh, fine. But make it quick, -haven't got all day." >
