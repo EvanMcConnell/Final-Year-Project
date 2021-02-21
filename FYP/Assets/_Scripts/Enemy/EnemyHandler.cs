@@ -29,16 +29,7 @@ public class EnemyHandler : MonoBehaviour
         print($"{hbStartScale} {newHBScale} {health} {stats.maxHealth} {bigbrain}");
         hbScalePoint.transform.localScale = newHBScale;
 
-        if (health < 1)  Die();
-    }
-
-    void Die()
-    {
-        GameObject corpse = new GameObject(stats.name + " corpse", typeof(SpriteRenderer));
-        corpse.GetComponent<SpriteRenderer>().sprite = stats.deadSprite;
-        corpse.GetComponent<SpriteRenderer>().sortingLayerName = "Character";
-        corpse.GetComponent<SpriteRenderer>().sortingOrder = Mathf.FloorToInt(transform.position.y*-100);
-        print(stats.name + " died");
-        Destroy(gameObject);
+        if (health < 1)
+            GetComponentInParent<EnemyStates>().die();
     }
 }

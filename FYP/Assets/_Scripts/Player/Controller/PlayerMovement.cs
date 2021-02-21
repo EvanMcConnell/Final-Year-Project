@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     Animator anim;
-    Rigidbody2D rb;
-    SpriteRenderer renderer;
+    Rigidbody rb;
+    SpriteRenderer sprite, weaponSprite;
     [SerializeField] float xInput;
     [SerializeField] float yInput;
     [SerializeField] float moveSpeed;
@@ -15,8 +15,9 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
-        rb = GetComponent<Rigidbody2D>();
-        renderer = GetComponent<SpriteRenderer>();
+        rb = GetComponent<Rigidbody>();
+        sprite = GetComponent<SpriteRenderer>();
+        weaponSprite = transform.GetChild(0).GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -26,16 +27,17 @@ public class PlayerMovement : MonoBehaviour
         yInput = Input.GetAxisRaw("Vertical");
 
         if (xInput != 0 || yInput != 0) { 
-            rb.velocity = xInput!=0 && yInput!=0 ? new Vector2(xInput * (moveSpeed*.8f), yInput * (moveSpeed*.8f)) : new Vector2(xInput*moveSpeed, yInput*moveSpeed); 
+            rb.velocity = xInput!=0 && yInput!=0 ? new Vector3(xInput * (moveSpeed*.8f), 0,  yInput * (moveSpeed*.8f)) : new Vector3(xInput*moveSpeed, 0, yInput*moveSpeed); 
             anim.SetBool("isWalking", true); 
         } else {
             rb.velocity = new Vector2(0, 0);
             anim.SetBool("isWalking", false); 
         }
 
-        if(xInput < 0 && facingRight == true) { transform.eulerAngles = new Vector3(0,180,0); facingRight = false; }
-        if(xInput > 0 && facingRight == false){ transform.eulerAngles = new Vector3(0, 0, 0); facingRight = true; }
+        if(xInput < 0 && facingRight == true) { transform.localEulerAngles = new Vector3(0,180,0); facingRight = false; }
+        if(xInput > 0 && facingRight == false){ transform.localEulerAngles = new Vector3(0, 0, 0); facingRight = true; }
 
-        renderer.sortingOrder = Mathf.FloorToInt(transform.position.y * -100);
+        sprite.sortingOrder = Mathf.FloorToInt(transform.position.z * -100);
+        weaponSprite.sortingOrder = sprite.sortingOrder + 1;
     }
 }

@@ -11,10 +11,10 @@ public class EnemyDamageHandler : MonoBehaviour
 
     void Start()
     {
-        attackTrigger = attackObject.GetComponent<BoxCollider2D>();
+        //attackTrigger = attackObject.GetComponent<BoxCollider2D>();
         stats = GetComponentInParent<EnemyHandler>();
-        attackStats = GetComponentInParent<EnemyHandler>().getEnemy();
-        StartCoroutine(attack());
+        attackStats = stats.getEnemy();
+        //StartCoroutine(attack());
     }
 
     public Enemy getAttackStats()
@@ -36,12 +36,12 @@ public class EnemyDamageHandler : MonoBehaviour
     IEnumerator attack()
     {
         attackTrigger.enabled = true;
-        GetComponentInChildren<SpriteRenderer>().enabled = true;
+        //GetComponentInChildren<SpriteRenderer>().enabled = true;
         yield return new WaitForEndOfFrame();
         attackTrigger.enabled = false;
-        GetComponentInChildren<SpriteRenderer>().enabled = false;
+        //GetComponentInChildren<SpriteRenderer>().enabled = false;
         yield return new WaitForSecondsRealtime(2f);
-        StartCoroutine(attack());
+        //StartCoroutine(attack());
     }
 
 }
