@@ -1,13 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerTriggerHandler : MonoBehaviour
 {
     //[SerializeField] GameObject dialogueBox;
     GameObject prompt;
+    WaitForSecondsRealtime waitASec = new WaitForSecondsRealtime(1);
 
-    void OnTriggerStay2D(Collider2D coll)
+    void OnTriggerStay(Collider coll)
     {
         if (coll.gameObject.tag == "Shop")
         {
@@ -22,7 +24,18 @@ public class PlayerTriggerHandler : MonoBehaviour
         }
     }
 
-    void OnTriggerExit2D(Collider2D coll)
+    private IEnumerator OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "LevelTrigger")
+        {
+            GameObject.Find("TransitionSprite").GetComponent<Animator>().Play("Fade_in");
+            yield return waitASec;
+            SceneManager.LoadSceneAsync(other.name);
+        }
+        yield return null;
+    }
+
+    void OnTriggerExit(Collider coll)
     {
         if (coll.gameObject.tag == "Shop")
         {

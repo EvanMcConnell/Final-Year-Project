@@ -4,14 +4,14 @@
 	<character name = "Johnson"> 
 		<dialogue id = "00" emotion="Neutral" content= "What's up kid?">
 				
-					<choice content= "Show me what you've got. [Shop]" target = "shop"></choice>
-					<choice content= "There's something I've been meaning to ask." target = "1"></choice>
+					<choice content= "[Shop]" target = "shop"></choice>
+					<choice content= "Question" target = "1"></choice>
 				
 		</dialogue>
 		<dialogue id = "01" emotion="Frustrated" content= "Ugh, fine. But make it quick, -haven't got all day." >
 				
-					<choice content= "What is it you do around here?" target = "2"></choice>
-					<choice content= "It's nothing, nevermind." target = "0"></choice>
+					<choice content= "What is it you do?" target = "2"></choice>
+					<choice content= "Nevermind." target = "0"></choice>
 				
 		</dialogue>
 		<dialogue id = "02" emotion="Happy" content= "The Golden globe, yes;aaaaaaaaa it is in the yellow house!">

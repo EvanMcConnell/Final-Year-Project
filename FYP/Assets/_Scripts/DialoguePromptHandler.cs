@@ -23,7 +23,7 @@ public class DialoguePromptHandler : MonoBehaviour
     public void toggleDialogue()
     {
         playerControlScript.enabled = !playerControlScript.isActiveAndEnabled;
-        playerControlScript.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+        playerControlScript.gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
         dialogueHandler.shopBox.SetActive(false);
         dialogueBox.SetActive(!dialogueBox.activeInHierarchy);
         dialogueHandler.characterName = character.name;
