@@ -10,6 +10,8 @@ TagManager:
   - Attack
   - Enemy
   - LevelTrigger
+  - RoomSpawner
+  - MapSprite
   layers:
   - Default
   - TransparentFX
@@ -21,8 +23,8 @@ TagManager:
   - 
   - Background
   - hit
-  - 
-  - 
+  - RoomSpawner
+  - MapSprite
   - 
   - 
   - 
@@ -67,4 +69,7 @@ TagManager:
     locked: 0
   - name: UI
     uniqueID: 4246297791
+    locked: 0
+  - name: Map Cells
+    uniqueID: 1132468391
     locked: 0

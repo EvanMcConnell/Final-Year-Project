@@ -1,0 +1,15 @@
+0	R
+1	U
+2	L
+3	D
+4	RU
+5	LU
+6	LD
+7	RD
+8	RUD
+9	RLU
+10	LUD
+11	RLD
+12	UD
+13	RL
+14	RLUD
