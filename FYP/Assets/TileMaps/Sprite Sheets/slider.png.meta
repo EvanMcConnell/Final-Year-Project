@@ -11,6 +11,9 @@ TextureImporter:
   - first:
       213: -8122164587498115561
     second: slider_2
+  - first:
+      213: -3935539791235424085
+    second: slider_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -166,6 +169,27 @@ TextureImporter:
       bones: []
       spriteID: 71eeaea3756484f80800000000000000
       internalID: -8122164587498115561
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slider_3
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 23
+        width: 2
+        height: 2
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba06ff749672269c0800000000000000
+      internalID: -3935539791235424085
       vertices: []
       indices: 
       edges: []

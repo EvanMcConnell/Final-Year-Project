@@ -8,7 +8,6 @@ public class PlayerTriggerHandler : MonoBehaviour
     //[SerializeField] GameObject dialogueBox;
     GameObject prompt;
     WaitForSecondsRealtime waitASec = new WaitForSecondsRealtime(1);
-    [SerializeField] LayerMask mapSpriteLayer;
 
     void OnTriggerStay(Collider coll)
     {
@@ -29,7 +28,7 @@ public class PlayerTriggerHandler : MonoBehaviour
     {
         if (other.tag == "LevelTrigger")
         {
-            GameObject.Find("TransitionSprite").GetComponent<Animator>().Play("Fade_in");
+            GameObject.Find("Transition Sprite").GetComponent<Animator>().Play("Fade_in");
             yield return waitASec;
             SceneManager.LoadSceneAsync(other.name);
         }

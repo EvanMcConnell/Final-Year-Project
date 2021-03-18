@@ -26,6 +26,16 @@
 					<choice content= "Fantastic!" target = "-1"></choice>
 				
 		</dialogue>
+    <dialogue id="tut1-1" emotion="Happy" content="Oh hey, you're new around here.">
+      
+      <choice target="tut1-2"/>
+      
+    </dialogue>
+    <dialogue id="tut1-2" emotion="Happy" content="Well, good luck out there">
+
+      <choice target="-1"/>
+      
+    </dialogue>
 
 	</character>
 	<character name = "Mary"> 

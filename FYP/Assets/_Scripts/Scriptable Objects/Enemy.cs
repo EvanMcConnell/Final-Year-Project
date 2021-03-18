@@ -9,4 +9,5 @@ public class Enemy : ScriptableObject
     public int maxHealth;
     public int damage;
     public Sprite deadSprite;
+    public GameObject drop;
 }

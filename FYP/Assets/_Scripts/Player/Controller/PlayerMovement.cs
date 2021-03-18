@@ -10,7 +10,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float xInput;
     [SerializeField] float yInput;
     [SerializeField] float moveSpeed;
-    bool facingRight = true;
+    [SerializeField] bool facingRight = true;
+    AttackHandler atk;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         sprite = GetComponent<SpriteRenderer>();
         weaponSprite = transform.GetChild(0).GetComponent<SpriteRenderer>();
+        atk = GetComponentInChildren<AttackHandler>();
     }
 
     // Update is called once per frame
@@ -34,8 +36,16 @@ public class PlayerMovement : MonoBehaviour
             anim.SetBool("isWalking", false); 
         }
 
-        if(xInput < 0 && facingRight == true) { transform.localEulerAngles = new Vector3(0,180,0); facingRight = false; }
-        if(xInput > 0 && facingRight == false){ transform.localEulerAngles = new Vector3(0, 0, 0); facingRight = true; }
+
+
+        if(xInput < 0 && facingRight == true) { 
+            transform.localEulerAngles = new Vector3(0,180,0); facingRight = false;
+            atk.flipHitCheckOffset();
+        }
+        if(xInput > 0 && facingRight == false){ 
+            transform.localEulerAngles = new Vector3(0, 0, 0); facingRight = true;
+            atk.flipHitCheckOffset();
+        }
 
         sprite.sortingOrder = Mathf.FloorToInt(transform.position.z * -100);
         weaponSprite.sortingOrder = sprite.sortingOrder + 1;

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class RoomSpawner : MonoBehaviour
 {
-    [SerializeField] static GameObject[] roomPrefabs;
     public bool left, right, up, down, done;
     private static Dictionary<string, int> roomTypes = new Dictionary<string, int>()
     {
@@ -62,6 +61,16 @@ public class RoomSpawner : MonoBehaviour
         if(gameObject.name != "Base")
             mapSprite.enabled = false;
 
-        Instantiate(prefabs.roomShells[roomChoice], this.transform);
+        GameObject shell = Instantiate(prefabs.roomShells[roomChoice], this.transform);
+
+        int interiorChoice = Mathf.FloorToInt(Random.Range(0, prefabs.roomInteriors.Length));
+        Instantiate(prefabs.roomInteriors[interiorChoice], shell.transform);
+    }
+
+    public GameObject spawnExit()
+    {
+        GameObject exit = Instantiate(prefabs.ExitTrigger, this.transform);
+        exit.name = "Exit";
+        return exit;
     }
 }

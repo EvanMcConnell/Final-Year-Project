@@ -17,3 +17,4 @@ MonoBehaviour:
   damage: 50
   deadSprite: {fileID: -6595739212165517502, guid: a4eef59dd48fa2d4c8ce767948c72e26,
     type: 3}
+  drop: {fileID: 6296006893641195313, guid: f97978059d875cb4ba730de43915a6ba, type: 3}

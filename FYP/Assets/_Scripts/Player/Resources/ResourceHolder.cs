@@ -19,7 +19,7 @@ public class ResourceHolder : MonoBehaviour
         {
             resource = possibleResources[Mathf.FloorToInt(Random.Range(0, possibleResources.Length))];
 
-            if(minMaxQuantity.Length > 1 && minMaxQuantity[0] < minMaxQuantity[1])
+            if (minMaxQuantity.Length > 1 && minMaxQuantity[0] < minMaxQuantity[1])
             {
                 quantity = Mathf.FloorToInt(Random.Range(minMaxQuantity[0], minMaxQuantity[1]));
             }
@@ -38,17 +38,17 @@ public class ResourceHolder : MonoBehaviour
 
     void setResourceSprite(Sprite newSprite)
     {
-        gameObject.GetComponentInChildren<SpriteRenderer>().sprite = newSprite;
+        SpriteRenderer renderer = gameObject.GetComponentInChildren<SpriteRenderer>();
+
+        renderer.sprite = newSprite;
+        renderer.sortingOrder = Mathf.RoundToInt(transform.position.z)*-100+1;
     }
 
 
-    void setResourceText(string newText)
-    {
-        gameObject.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = newText;
-    }
+    void setResourceText(string newText) => gameObject.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = newText;
 
 
-    public int getQuantity(){ return quantity; }
+    public int getQuantity() => quantity;
 
-    public Resource getResource() { return resource; }
+    public Resource getResource() => resource;
 }

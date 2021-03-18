@@ -8,11 +8,17 @@ public class EnemyHandler : MonoBehaviour
     int health;
     [SerializeField] GameObject hbScalePoint;
     Vector3 hbStartScale;
+    Rigidbody rb;
+    EnemyStates ai;
+    BoxCollider bColl;
 
     private void Start()
     {
+        rb = GetComponentInParent<Rigidbody>();
+        ai = GetComponentInParent<EnemyStates>();
         health = stats.maxHealth;
         hbStartScale = hbScalePoint.transform.localScale;
+        bColl = GetComponentInChildren<BoxCollider>();
     }
 
     public Enemy getEnemy()
@@ -20,7 +26,7 @@ public class EnemyHandler : MonoBehaviour
         return stats;
     }
 
-    public void takeDamage(int damage)
+    public IEnumerator takeDamage(int damage, Vector3 knockback, float stunDuration)
     {
         health -= damage;
 
@@ -30,6 +36,22 @@ public class EnemyHandler : MonoBehaviour
         hbScalePoint.transform.localScale = newHBScale;
 
         if (health < 1)
+        {
             GetComponentInParent<EnemyStates>().die();
+
+        }
+        else
+        {
+
+            rb.AddForce(knockback, ForceMode.Impulse);
+            ai.currentState = EnemyStates.state.idle;
+            bColl.isTrigger = false;
+
+            yield return new WaitForSecondsRealtime(stunDuration);
+
+            rb.velocity = new Vector3(0, 0, 0);
+            ai.currentState = EnemyStates.state.chase;
+            bColl.isTrigger = true;
+        }
     }
 }

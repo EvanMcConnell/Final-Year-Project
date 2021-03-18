@@ -6,6 +6,9 @@ public class AttackHandler : MonoBehaviour
 {
     [SerializeField] Weapon attackStats;
     [SerializeField] LayerMask hitLayer;
+    [SerializeField] Vector3 offset, halfExtents;
+    [SerializeField] float attackForce;
+    Vector3 yEliminator = new Vector3(0, 0, 0);
     WaitForEndOfFrame nextFrame = new WaitForEndOfFrame();
     Animator anim;
     Collider[] hits;
@@ -19,67 +22,55 @@ public class AttackHandler : MonoBehaviour
     {
         var dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
         var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        //transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
             StartCoroutine(attack());
-        }
     }
 
-    IEnumerator attack(){
-        //GetComponent<BoxCollider2D>().enabled = true;
-        //GetComponentInChildren<SpriteRenderer>().enabled = true;
-        //yield return new WaitForEndOfFrame();
-
-        /*	initial attempt at replacing attack  trigger
-			should be replaced with OverlapArea  Evan 12-12-20 */
-        //Collider2D[] hits = Physics2D.OverlapAreaAll(transform.position + (Vector3.up / 2), transform.position + Vector3.right + (Vector3.down / 2), hitLayer);
-        //Collider2D[] hits = Physics.OverlapAreaAll(
-        //    transform.position + (Vector3.up / 2),
-        //    transform.position + Vector3.right + (Vector3.down / 2), 
-        //    hitLayer
-        //    );
+    IEnumerator attack()
+    {
 
         anim.SetTrigger("Attack");
         print("attacking");
 
+
         hits = Physics.OverlapBox(
-            transform.position + new Vector3(0.25f, 0, 0),
-            new Vector3(0.5f, 1, 10), new Quaternion(), hitLayer);
+            transform.position + offset,
+            halfExtents,
+            new Quaternion(),
+            hitLayer);
 
 
         foreach (Collider x in hits)
         {
-            print("attacked: " + x.gameObject.name);
-            x.transform.gameObject.GetComponentInParent<EnemyHandler>().takeDamage(attackStats.damage);
+            if (x.tag == "Enemy")
+            {
+                print(Vector3.Scale(((transform.position + x.transform.position).normalized * attackForce), yEliminator));
+                EnemyHandler enemy = x.gameObject.GetComponentInParent<EnemyHandler>();
+                StartCoroutine(enemy.takeDamage(
+                    attackStats.damage, 
+                    Vector3.Scale(((transform.position + x.transform.position).normalized * attackForce), yEliminator),
+                    0.5f
+                    ));
+            } else if (x.tag == "Player")
+            {
+
+            }
         }
 
         yield return nextFrame;
 
         anim.ResetTrigger("Attack");
-
-        //yield return new WaitForSecondsRealtime(0.25f);
-        //GetComponent<BoxCollider2D>().enabled = false;
-        //GetComponentInChildren<SpriteRenderer>().enabled = false;
     }
 
-    public Weapon getAttackStats()
-    {
-        return attackStats;
-    }
+    public void flipHitCheckOffset() => offset.x = offset.x * -1;
 
-    public void OnDrawGizmos()
-    {
-        //Gizmos.DrawLine(
-        //    transform.position + (Vector3.up / 2),
-        //    transform.position + (Vector3.down / 2)
-        //    );
+    public Weapon getAttackStats() => attackStats;
 
-        //Gizmos.DrawWireCube(
-        //    transform.position + new Vector3(0.25f, 0, 0),
-        //    new Vector3(0.5f, 1, 10)
-        //    );
-    }
+    public void OnDrawGizmos() => Gizmos.DrawWireCube(
+        transform.position + offset,
+        new Vector3(halfExtents.x * 2, halfExtents.y * 2, halfExtents.z * 2)
+        );
+
 
 }

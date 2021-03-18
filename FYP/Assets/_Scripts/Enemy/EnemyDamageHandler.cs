@@ -24,13 +24,13 @@ public class EnemyDamageHandler : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.GetComponent<AttackHandler>())
-        {
-            Weapon attackStats = collision.gameObject.GetComponent<AttackHandler>().getAttackStats();
-            collision.gameObject.GetComponent<BoxCollider2D>().enabled = false;
-            stats.takeDamage(attackStats.damage);
-            print("Taking damage from: " + collision.gameObject.name);
-        }
+        //if (collision.gameObject.GetComponent<AttackHandler>())
+        //{
+        //    Weapon attackStats = collision.gameObject.GetComponent<AttackHandler>().getAttackStats();
+        //    collision.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        //    stats.takeDamage(attackStats.damage);
+        //    print("Taking damage from: " + collision.gameObject.name);
+        //}
     }
 
     IEnumerator attack()
