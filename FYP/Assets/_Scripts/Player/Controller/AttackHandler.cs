@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class AttackHandler : MonoBehaviour
 {
     [SerializeField] Weapon attackStats;
@@ -12,6 +12,7 @@ public class AttackHandler : MonoBehaviour
     WaitForEndOfFrame nextFrame = new WaitForEndOfFrame();
     Animator anim;
     Collider[] hits;
+    [SerializeField] Image[] weaponImages;
 
     private void Start()
     {
@@ -66,6 +67,13 @@ public class AttackHandler : MonoBehaviour
     public void flipHitCheckOffset() => offset.x = offset.x * -1;
 
     public Weapon getAttackStats() => attackStats;
+
+    public void setWeapon(Weapon newWeapon)
+    {
+        attackStats = newWeapon;
+        foreach (Image i in weaponImages)
+            i.sprite = attackStats.image;
+    }
 
     public void OnDrawGizmos() => Gizmos.DrawWireCube(
         transform.position + offset,

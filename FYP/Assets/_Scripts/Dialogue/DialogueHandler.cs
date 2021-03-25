@@ -11,7 +11,7 @@ public class DialogueHandler : MonoBehaviour
     string currentText;
     string[] optionsText;
     [SerializeField] Button[] options;
-    public TMPro.TextMeshProUGUI dialogueText, choice1Text, choice2Text;
+    public TMPro.TextMeshProUGUI dialogueText, cutsceneText;
     [SerializeField] TMPro.TextMeshProUGUI[] choiceTexts;
     XElement[] optionsArray, foundPortraitsArray;
     public string characterName = "Diana";
@@ -19,12 +19,15 @@ public class DialogueHandler : MonoBehaviour
     public GameObject shopBox;
     public Sprite[] possiblePortraits;
     public Image portrait;
+    [SerializeField] bool shopAvailable = false;
 
     [SerializeField] ResourceManager rm;
 
     void OnEnable()
     {
         //findDialogue("01");
+
+        rm = ResourceManager.Instance;
     }
 
     public void findDialogue(string id)
@@ -57,8 +60,11 @@ public class DialogueHandler : MonoBehaviour
     {
         if (id == "-1") {
             transform.GetChild(1).gameObject.SetActive(false);
-            handler.gameObject.SetActive(false);
-            GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = true;
+            //handler.gameObject.SetActive(false);
+            handler.enabled = false;
+            //GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = true;
+            //GameObject.Find("Player").GetComponentInChildren<AttackHandler>().enabled = true;
+            Time.timeScale = 1;
         }
         else
         {
@@ -72,13 +78,17 @@ public class DialogueHandler : MonoBehaviour
                 where q != null && q.Attribute("id").Value == id
                 select q;
 
+
             foreach (XElement z in dialogues)
             {
-                dialogueText.text = z.Attribute("content").Value;
+                cutsceneText.text = z.Attribute("content").Value;
 
-                handler.nextLine = z.Attribute("target").Value;
+                IEnumerable<XElement> targets =
+                    from f in z.Descendants("choice")
+                    select f;
 
-                //findOptions(z);
+                foreach (XElement x in targets)
+                    handler.nextLine = x.Attribute("target").Value;
 
                 if (z.Attribute("emotion").Value != null) findPortrait(z);
             }
@@ -160,11 +170,9 @@ public class DialogueHandler : MonoBehaviour
 
     }
 
-    public void closeShopWindow(GameObject window)
-    {
-        print(EventSystem.current.currentSelectedGameObject.name);
-        window.SetActive(false);
-    }
+    void openShopWindow() => shopBox.SetActive(true);
+
+    public void closeShopWindow(GameObject window) => window.SetActive(false);
 
 
 

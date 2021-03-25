@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class HUDManager : MonoBehaviour
 {
+    public static HUDManager Instance;
 
     [SerializeField] TMPro.TextMeshProUGUI lifeCounter;
     [SerializeField] TMPro.TextMeshProUGUI gunpowderCounter;
@@ -37,10 +38,25 @@ public class HUDManager : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public void updateResourceCounters()
     {
-        
+        gunpowderCounter.text = ResourceManager.Instance.getPowder().ToString();
+        metalCounter.text = ResourceManager.Instance.getMetal().ToString();
+        woodCounter.text = ResourceManager.Instance.getWood().ToString();
+    }
+
+    void Awake()
+    {
+        if (!Instance)
+        {
+            Instance = this;
+            HUDManager.Instance.updateResourceCounters();
+        }
+        else
+        {
+            print("HUDManager Instance found - destroying instance on "+gameObject.name);
+            Destroy(this);
+        }
     }
 
     // Update is called once per frame

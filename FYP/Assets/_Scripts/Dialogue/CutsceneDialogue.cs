@@ -7,18 +7,35 @@ public class CutsceneDialogue : MonoBehaviour
 {
     [SerializeField] float wait = 1;
     [SerializeField] GameObject DialogueBox;
+    [SerializeField] string firstLine;
     public string nextLine;
     [SerializeField] DialogueHandler handler;
+    [SerializeField] Character character;
+    [SerializeField] Image portrait;
 
-    private IEnumerator Start()
+    void OnEnable() => StartCoroutine(startCutscene());
+
+    private IEnumerator startCutscene()
     {
+
+        //GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = false;
+        //GameObject.Find("Player").GetComponentInChildren<AttackHandler>().enabled = false;
+
         yield return new WaitForSecondsRealtime(wait);
+
+        Time.timeScale = 0;
 
         DialogueBox.SetActive(true);
 
-        handler.dialogueText = DialogueBox.transform.GetChild(0).GetChild(1).GetChild(0).GetComponent<TMPro.TextMeshProUGUI>();
+        handler.characterName = character.name;
 
-        handler.findCutsceneDialogue(nextLine, this);
+        handler.possiblePortraits = character.portraits;
+
+        handler.portrait = portrait;
+
+        //handler.dialogueText = DialogueBox.transform.GetChild(0).GetChild(1).GetChild(0).GetComponent<TMPro.TextMeshProUGUI>();
+
+        handler.findCutsceneDialogue(firstLine, this);
     }
 
     private void Update()

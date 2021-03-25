@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using System;
 
 public class shopButtonHandler : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class shopButtonHandler : MonoBehaviour
     [SerializeField] Transform ResourcesBar;
     [SerializeField] float quantityYOffset;
     [SerializeField] Color textColor;
+    bool canAfford = true;
+
     void OnEnable()
     {
         foreach(Image x in itemSprites) x.sprite = item.image;
@@ -27,12 +30,28 @@ public class shopButtonHandler : MonoBehaviour
 
             value.GetComponent<RectTransform>().localPosition = new Vector3(0, quantityYOffset, 0);
             value.GetComponent<RectTransform>().sizeDelta = new Vector2(50,50);
-            print(value.GetComponent<RectTransform>().rect.width);
+
+
+            canAfford = ResourceManager.Instance.checkQuantity(x, item.quantities[counter]);
 
             counter ++;
         }
-        
+
+        GameObject blocker = transform.parent.GetChild(transform.GetSiblingIndex() + 1).gameObject;
+        blocker.SetActive(!canAfford);
+
         ResourcesBar.GetComponent<HorizontalLayoutGroup>().spacing = item.recipe.Length > 2 ? 2 : 8;
+    }
+
+    public void buyWeapon()
+    {
+        int counter = 0;
+        foreach(Resource x in item.recipe)
+        {
+            ResourceManager.Instance.reduceResource(x, item.quantities[counter]);
+            counter++;
+        }
+        GameObject.Find("Player").GetComponentInChildren<AttackHandler>().setWeapon(item);
     }
 
     private void OnDisable()

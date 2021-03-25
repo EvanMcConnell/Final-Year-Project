@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DialoguePromptHandler : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class DialoguePromptHandler : MonoBehaviour
     [SerializeField] Character character;
     [SerializeField] string defaultDialogueOption;
     [SerializeField] bool cutscene;
+    [SerializeField] Image portrait;
 
     private void Start()
     {
@@ -33,6 +35,7 @@ public class DialoguePromptHandler : MonoBehaviour
     {
         playerControlScript.enabled = !playerControlScript.isActiveAndEnabled;
         playerControlScript.gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+        dialogueHandler.portrait = portrait;
         dialogueHandler.shopBox.SetActive(false);
         dialogueBox.SetActive(!dialogueBox.activeInHierarchy);
         dialogueHandler.characterName = character.name;
