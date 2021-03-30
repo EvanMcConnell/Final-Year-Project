@@ -2372,6 +2372,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 495097919464100125, guid: baa99c76366aec044a70d3cf84b5b17d,
+        type: 3}
+      propertyPath: m_Name
+      value: Cutscene Image
+      objectReference: {fileID: 0}
     - target: {fileID: 1691350857213735303, guid: baa99c76366aec044a70d3cf84b5b17d,
         type: 3}
       propertyPath: m_Enabled
@@ -2385,7 +2390,7 @@ PrefabInstance:
     - target: {fileID: 4852047606877933881, guid: baa99c76366aec044a70d3cf84b5b17d,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7354514799454696901, guid: baa99c76366aec044a70d3cf84b5b17d,
         type: 3}
@@ -2507,6 +2512,17 @@ PrefabInstance:
       propertyPath: weaponImages.Array.data[1]
       value: 
       objectReference: {fileID: 804952265}
+    - target: {fileID: 7354514799750721353, guid: baa99c76366aec044a70d3cf84b5b17d,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 2785036088778744783, guid: 36e2195f848c7314683d5942aea06dd2,
+        type: 3}
+    - target: {fileID: 7354514799750721354, guid: baa99c76366aec044a70d3cf84b5b17d,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 66f06d5d21429214889917f3ab57b615, type: 2}
     - target: {fileID: 7354514799750721357, guid: baa99c76366aec044a70d3cf84b5b17d,
         type: 3}
       propertyPath: m_Layer
@@ -2547,6 +2563,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -0.37989044
       objectReference: {fileID: 0}
+    - target: {fileID: 7354514800044968469, guid: baa99c76366aec044a70d3cf84b5b17d,
+        type: 3}
+      propertyPath: m_TagString
+      value: ShopButton
+      objectReference: {fileID: 0}
     - target: {fileID: 7354514800044968470, guid: baa99c76366aec044a70d3cf84b5b17d,
         type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -2581,6 +2602,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -0.3800907
+      objectReference: {fileID: 0}
+    - target: {fileID: 7354514800207745364, guid: baa99c76366aec044a70d3cf84b5b17d,
+        type: 3}
+      propertyPath: m_TagString
+      value: ShopButton
       objectReference: {fileID: 0}
     - target: {fileID: 7354514800207745365, guid: baa99c76366aec044a70d3cf84b5b17d,
         type: 3}
@@ -2632,10 +2658,25 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7354514800765720274, guid: baa99c76366aec044a70d3cf84b5b17d,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7354514800765720274, guid: baa99c76366aec044a70d3cf84b5b17d,
+        type: 3}
+      propertyPath: EffectMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: acdbfaaa8bed1bb479e909c1193d851f, type: 2}
     - target: {fileID: 7354514800765720275, guid: baa99c76366aec044a70d3cf84b5b17d,
         type: 3}
       propertyPath: m_CullingMask.m_Bits
       value: 5943
+      objectReference: {fileID: 0}
+    - target: {fileID: 7354514801162480892, guid: baa99c76366aec044a70d3cf84b5b17d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7354514801264688070, guid: baa99c76366aec044a70d3cf84b5b17d,
         type: 3}
@@ -2695,12 +2736,22 @@ PrefabInstance:
     - target: {fileID: 7354514801264688092, guid: baa99c76366aec044a70d3cf84b5b17d,
         type: 3}
       propertyPath: metal
-      value: 5
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7354514801264688092, guid: baa99c76366aec044a70d3cf84b5b17d,
+        type: 3}
+      propertyPath: validate
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7354514801264688092, guid: baa99c76366aec044a70d3cf84b5b17d,
         type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7354514801398917421, guid: baa99c76366aec044a70d3cf84b5b17d,
+        type: 3}
+      propertyPath: m_TagString
+      value: ShopButton
       objectReference: {fileID: 0}
     - target: {fileID: 7354514801398917422, guid: baa99c76366aec044a70d3cf84b5b17d,
         type: 3}

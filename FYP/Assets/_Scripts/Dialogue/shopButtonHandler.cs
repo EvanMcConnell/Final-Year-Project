@@ -15,9 +15,10 @@ public class shopButtonHandler : MonoBehaviour
 
     void OnEnable()
     {
-        foreach(Image x in itemSprites) x.sprite = item.image;
+        foreach (Image x in itemSprites) x.sprite = item.image;
         int counter = 0;
-        foreach (Resource x in item.recipe) {
+        foreach (Resource x in item.recipe)
+        {
             GameObject icon = Instantiate(new GameObject(), ResourcesBar);
             Image sr = icon.AddComponent<Image>();
             sr.sprite = x.resourceSprite;
@@ -29,29 +30,49 @@ public class shopButtonHandler : MonoBehaviour
             tm.alignment = TMPro.TextAlignmentOptions.Center;
 
             value.GetComponent<RectTransform>().localPosition = new Vector3(0, quantityYOffset, 0);
-            value.GetComponent<RectTransform>().sizeDelta = new Vector2(50,50);
+            value.GetComponent<RectTransform>().sizeDelta = new Vector2(50, 50);
 
+            //if(canAfford)
+            //    canAfford = ResourceManager.Instance.checkQuantity(x, item.quantities[counter]);
 
-            canAfford = ResourceManager.Instance.checkQuantity(x, item.quantities[counter]);
+            counter++;
+        }
 
-            counter ++;
+        //GameObject blocker = transform.parent.GetChild(transform.GetSiblingIndex() + 1).gameObject;
+        //blocker.SetActive(!canAfford);
+
+        evaluateAffordability();
+
+        ResourcesBar.GetComponent<HorizontalLayoutGroup>().spacing = item.recipe.Length > 2 ? 2 : 8;
+    }
+
+    public void evaluateAffordability()
+    {
+        canAfford = true;
+        int counter = 0;
+        foreach(Resource y in item.recipe)
+        {
+            if(canAfford)
+                canAfford = ResourceManager.Instance.checkQuantity(y, item.quantities[counter]);
+            counter++;
         }
 
         GameObject blocker = transform.parent.GetChild(transform.GetSiblingIndex() + 1).gameObject;
         blocker.SetActive(!canAfford);
-
-        ResourcesBar.GetComponent<HorizontalLayoutGroup>().spacing = item.recipe.Length > 2 ? 2 : 8;
     }
 
     public void buyWeapon()
     {
         int counter = 0;
-        foreach(Resource x in item.recipe)
+        foreach (Resource x in item.recipe)
         {
             ResourceManager.Instance.reduceResource(x, item.quantities[counter]);
             counter++;
         }
         GameObject.Find("Player").GetComponentInChildren<AttackHandler>().setWeapon(item);
+
+        foreach (GameObject button in GameObject.FindGameObjectsWithTag("ShopButton"))
+            button.GetComponent<shopButtonHandler>().evaluateAffordability();
     }
 
     private void OnDisable()

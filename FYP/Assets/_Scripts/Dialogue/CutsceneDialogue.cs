@@ -21,6 +21,13 @@ public class CutsceneDialogue : MonoBehaviour
         //GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = false;
         //GameObject.Find("Player").GetComponentInChildren<AttackHandler>().enabled = false;
 
+        GameObject Dialogue = GameObject.Find("Dialogue");
+
+        //DialogueBox = GameObject.Find("Cutscene Box");
+        handler = Dialogue.GetComponent<DialogueHandler>();
+        DialogueBox = Dialogue.transform.GetChild(1).gameObject;
+        portrait = DialogueBox.transform.GetChild(0).GetChild(2).GetChild(0).GetComponent<Image>();
+
         yield return new WaitForSecondsRealtime(wait);
 
         Time.timeScale = 0;

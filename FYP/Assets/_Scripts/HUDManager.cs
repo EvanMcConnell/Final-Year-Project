@@ -50,13 +50,17 @@ public class HUDManager : MonoBehaviour
         if (!Instance)
         {
             Instance = this;
-            HUDManager.Instance.updateResourceCounters();
         }
         else
         {
             print("HUDManager Instance found - destroying instance on "+gameObject.name);
             Destroy(this);
         }
+    }
+
+    private void Start()
+    {
+        HUDManager.Instance.updateResourceCounters();
     }
 
     // Update is called once per frame

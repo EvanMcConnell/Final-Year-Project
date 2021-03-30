@@ -26,12 +26,12 @@
 					<choice content= "Fantastic!" target = "-1"></choice>
 				
 		</dialogue>
-    <dialogue id="tut1-1" emotion="Happy" content="Oh hey, you're new around here.">
+    <dialogue id="tut1-1" emotion="Happy" content="Way to go, you've made it this far.">
       
       <choice target="tut1-2"/>
       
     </dialogue>
-    <dialogue id="tut1-2" emotion="Happy" content="Well, good luck out there">
+    <dialogue id="tut1-2" emotion="Happy" content="Don't give up now!!">
 
       <choice target="-1"/>
       

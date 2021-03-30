@@ -8,6 +8,7 @@ public class ResourceManager : MonoBehaviour
     public static ResourceManager Instance;
 
     [SerializeField] int wood = 0, metal = 0, gunpowder = 0;
+    [SerializeField] bool validate = false;
 
     public int getWood() => wood;
     public int getMetal() => metal;
@@ -32,7 +33,11 @@ public class ResourceManager : MonoBehaviour
         }
     }
 
-    private void OnValidate() => HUDManager.Instance.updateResourceCounters();
+    private void OnValidate()
+    {
+        if(validate)
+            HUDManager.Instance.updateResourceCounters();
+    }
 
     public void reduceResource(Resource resource, int change)
     {
