@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Police Baton
   image: {fileID: -1367216362289944327, guid: 009a2e7dcfe94b34db11b59590767b23, type: 3}
-  damage: 0
+  damage: 50
   recipe:
   - {fileID: 11400000, guid: 3ec4db369c864eb48aee3524ce59ab3a, type: 2}
   - {fileID: 11400000, guid: 68f4d6526e354884b98679b28da026d1, type: 2}
   quantities: 1700000007000000
+  animatorController: {fileID: 9100000, guid: db229427bd41eec4eb5226c443df7e4b, type: 2}

@@ -3,15 +3,17 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 using System;
+using TMPro;
 
 public class shopButtonHandler : MonoBehaviour
 {
-    [SerializeField] Weapon item;
-    [SerializeField] Image[] itemSprites;
-    [SerializeField] Transform ResourcesBar;
-    [SerializeField] float quantityYOffset;
-    [SerializeField] Color textColor;
-    bool canAfford = true;
+    [SerializeField] private Weapon item;
+    [SerializeField] private Image[] itemSprites;
+    [SerializeField] private Transform ResourcesBar;
+    [SerializeField] private TMP_FontAsset font;
+    [SerializeField] private float quantityYOffset;
+    [SerializeField] private Color textColor;
+    private bool canAfford = true;
 
     void OnEnable()
     {
@@ -28,6 +30,7 @@ public class shopButtonHandler : MonoBehaviour
             tm.text = item.quantities[counter].ToString();
             tm.color = textColor;
             tm.alignment = TMPro.TextAlignmentOptions.Center;
+            tm.font = font;
 
             value.GetComponent<RectTransform>().localPosition = new Vector3(0, quantityYOffset, 0);
             value.GetComponent<RectTransform>().sizeDelta = new Vector2(50, 50);
@@ -50,9 +53,9 @@ public class shopButtonHandler : MonoBehaviour
     {
         canAfford = true;
         int counter = 0;
-        foreach(Resource y in item.recipe)
+        foreach (Resource y in item.recipe)
         {
-            if(canAfford)
+            if (canAfford)
                 canAfford = ResourceManager.Instance.checkQuantity(y, item.quantities[counter]);
             counter++;
         }
@@ -69,7 +72,9 @@ public class shopButtonHandler : MonoBehaviour
             ResourceManager.Instance.reduceResource(x, item.quantities[counter]);
             counter++;
         }
-        GameObject.Find("Player").GetComponentInChildren<AttackHandler>().setWeapon(item);
+        
+        PlayerManager.Instance.GetComponentInChildren<AttackHandler>().setWeapon(item);
+        
 
         foreach (GameObject button in GameObject.FindGameObjectsWithTag("ShopButton"))
             button.GetComponent<shopButtonHandler>().evaluateAffordability();

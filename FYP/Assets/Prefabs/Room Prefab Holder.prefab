@@ -61,7 +61,11 @@ MonoBehaviour:
   - {fileID: 4896273046560176897, guid: dcb8ca8debb275f4daae5ccc1cd82cdb, type: 3}
   - {fileID: 4896273046560176897, guid: 26b0470d862d2cb46a7ed7c6cd925a7b, type: 3}
   - {fileID: 4896273046560176897, guid: c016a3f056101e547b6d6a38f17c587b, type: 3}
-  roomInteriors: []
+  roomInteriors:
+  - {fileID: 5930082982852578022, guid: 0bda1c7b57a16034e9cd502bbe69e0bc, type: 3}
+  - {fileID: 5930082982852578022, guid: a2da36f507115324692739c94b341358, type: 3}
+  - {fileID: 5930082982852578022, guid: 0698eda527c924a44a5c85edcc42992d, type: 3}
+  - {fileID: 5930082982852578022, guid: 9862e5f8c2db4d148acde89be305c1df, type: 3}
   mapCells:
   - {fileID: -3237052885446174224, guid: 999cb94274def464a9e3129aa618f597, type: 3}
   - {fileID: -339260479105067659, guid: 999cb94274def464a9e3129aa618f597, type: 3}

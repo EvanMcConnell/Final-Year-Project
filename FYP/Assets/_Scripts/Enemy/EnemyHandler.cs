@@ -37,8 +37,8 @@ public class EnemyHandler : MonoBehaviour
 
         if (health < 1)
         {
+            print("dead");
             GetComponentInParent<EnemyStates>().die();
-
         }
         else
         {

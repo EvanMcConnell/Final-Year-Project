@@ -1,13 +1,16 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Xml.Linq;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class DialogueHandler : MonoBehaviour
 {
+    public static DialogueHandler Instance;
     string currentText;
     string[] optionsText;
     [SerializeField] Button[] options;
@@ -19,19 +22,38 @@ public class DialogueHandler : MonoBehaviour
     public GameObject shopBox;
     public Sprite[] possiblePortraits;
     public Image portrait;
+    [SerializeField] float scrollSpeed;
+    [SerializeField] AudioClip typingClick;
     [SerializeField] bool shopAvailable = false;
+    bool textFinished = true;
+    public AudioSource audio;
+
 
     [SerializeField] ResourceManager rm;
 
     void OnEnable()
     {
         //findDialogue("01");
-
+        audio = GetComponent<AudioSource>();
         rm = ResourceManager.Instance;
+    }
+
+
+    private void Start()
+    {
+        if (Instance)
+        {
+            this.enabled = false;
+        }
+        else
+        {
+            Instance = this;
+        }
     }
 
     public void findDialogue(string id)
     {
+        textFinished = false;
         XElement file = XElement.Load("./Assets/xml/dialogues.xml");
 
 
@@ -39,15 +61,15 @@ public class DialogueHandler : MonoBehaviour
             from e in file.Descendants("character")
             where e.Attribute("name").Value == characterName
             from q in e.Descendants("dialogue")
-            where q!=null && q.Attribute("id").Value == id
+            where q != null && q.Attribute("id").Value == id
             select q;
 
 
         optionsText = null;
-
         foreach (XElement z in dialogues)
         {
-            dialogueText.text = z.Attribute("content").Value;
+            StartCoroutine(writeDialogueText(z.Attribute("content").Value));
+            //dialogueText.text = z.Attribute("content").Value;
 
             findOptions(z);
 
@@ -58,65 +80,129 @@ public class DialogueHandler : MonoBehaviour
 
     public void findCutsceneDialogue(string id, CutsceneDialogue handler)
     {
-        if (id == "-1") {
-            transform.GetChild(1).gameObject.SetActive(false);
-            //handler.gameObject.SetActive(false);
-            handler.enabled = false;
-            //GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = true;
-            //GameObject.Find("Player").GetComponentInChildren<AttackHandler>().enabled = true;
-            Time.timeScale = 1;
+        if (textFinished)
+        {
+            print("setting text finished to false");
+
+            if (id == "-1")
+            {
+                transform.GetChild(1).gameObject.SetActive(false);
+                handler.gameObject.SetActive(false);
+                Time.timeScale = 1;
+            }
+            else
+            {
+
+                textFinished = false;
+                XElement file = XElement.Load("./Assets/xml/dialogues.xml");
+
+
+                IEnumerable<XElement> dialogues =
+                    from e in file.Descendants("character")
+                    where e.Attribute("name").Value == characterName
+                    from q in e.Descendants("dialogue")
+                    where q != null && q.Attribute("id").Value == id
+                    select q;
+
+
+                foreach (XElement z in dialogues)
+                {
+                    StartCoroutine(writeCutsceneText(z.Attribute("content").Value));
+
+                    IEnumerable<XElement> targets =
+                        from f in z.Descendants("choice")
+                        select f;
+
+                    foreach (XElement x in targets)
+                        handler.nextLine = x.Attribute("target").Value;
+
+                    if (z.Attribute("emotion").Value != null) findPortrait(z);
+                }
+
+                EventSystem.current.SetSelectedGameObject(null);
+
+            }
         }
         else
         {
-            XElement file = XElement.Load("./Assets/xml/dialogues.xml");
+            print("setting text finished to true");
+            textFinished = true;
+        }
 
+    }
 
-            IEnumerable<XElement> dialogues =
-                from e in file.Descendants("character")
-                where e.Attribute("name").Value == characterName
-                from q in e.Descendants("dialogue")
-                where q != null && q.Attribute("id").Value == id
-                select q;
+    IEnumerator writeCutsceneText(string text)
+    {
+        cutsceneText.text = "";
 
-
-            foreach (XElement z in dialogues)
+        foreach (char c in text)
+        {
+            if (!textFinished)
             {
-                cutsceneText.text = z.Attribute("content").Value;
-
-                IEnumerable<XElement> targets =
-                    from f in z.Descendants("choice")
-                    select f;
-
-                foreach (XElement x in targets)
-                    handler.nextLine = x.Attribute("target").Value;
-
-                if (z.Attribute("emotion").Value != null) findPortrait(z);
+                audio.PlayOneShot(typingClick);
+                cutsceneText.text += c;
+                yield return new WaitForSecondsRealtime(scrollSpeed);
             }
-
-            EventSystem.current.SetSelectedGameObject(null);
+            else
+            {
+                cutsceneText.text = text;
+                break;
+            }
 
         }
 
+        print("done");
 
+        textFinished = true;
+    }
+    
+    IEnumerator writeDialogueText(string text)
+    {
+        dialogueText.text = "";
 
-        //if (optionsArray[0].Attribute("target").Value == "-1") 
-        //{ 
-        //    currentCharacterPrompt.toggleDialogue(); 
-        //}
-        //else
-        //{
-        //    findDialogue(optionsArray[0].Attribute("target").Value);
-        //    print(optionsArray[0].Attribute("target").Value);
-        //}
+        foreach (char c in text)
+        {
+            if (!textFinished)
+            {
+                audio.PlayOneShot(typingClick);
+                dialogueText.text += c;
+                print("letter");
+                yield return new WaitForSecondsRealtime(scrollSpeed);
+            }
+            else
+            {
+                print("skipped");
+                dialogueText.text = text;
+                break;
+            }
+
+        }
+
+        print("done");
+
+        textFinished = true;
     }
 
     public void selectChoice(int button)
     {
         EventSystem.current.SetSelectedGameObject(null);
-        if (optionsArray[button].Attribute("target").Value == "-1") { currentCharacterPrompt.toggleDialogue(); }
-        else if(optionsArray[button].Attribute("target").Value == "shop") { shopBox.SetActive(true); }
-        else { findDialogue("0"+optionsArray[button].Attribute("target").Value);
-            print("0"+optionsArray[button].Attribute("target").Value); }
+        if (optionsArray[button].Attribute("target").Value == "-1") { StartCoroutine(currentCharacterPrompt.toggleDialogue()); }
+        else if (optionsArray[button].Attribute("target").Value == "shop") { shopBox.SetActive(true); }
+        else if (optionsArray[button].Attribute("target").Value == "turnback")
+        {
+            StartCoroutine(currentCharacterPrompt.toggleDialogue());
+            Destroy(GameObject.Find("Level Manager"));
+            SceneManager.LoadScene("Hub");
+        }else if (optionsArray[button].Attribute("target").Value == "continue")
+        {
+            StartCoroutine(currentCharacterPrompt.toggleDialogue());
+            SceneManager.LoadScene(GameObject.Find("Level Manager").GetComponent<LevelManager>().nextLevelName);
+        }
+        else
+        {
+            findDialogue("0" + optionsArray[button].Attribute("target").Value);
+            print("0" + optionsArray[button].Attribute("target").Value);
+        }
     }
 
     void findOptions(XElement a)
@@ -125,7 +211,7 @@ public class DialogueHandler : MonoBehaviour
             from e in a.Descendants()
             select e;
 
-         optionsArray = options.ToArray();
+        optionsArray = options.ToArray();
 
         for (int i = 0; i < choiceTexts.Length; i++)
         {

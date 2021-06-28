@@ -64,6 +64,7 @@ public class RoomSpawner : MonoBehaviour
         GameObject shell = Instantiate(prefabs.roomShells[roomChoice], this.transform);
 
         int interiorChoice = Mathf.FloorToInt(Random.Range(0, prefabs.roomInteriors.Length));
+        //print("Interior Choice: " + interiorChoice);
         Instantiate(prefabs.roomInteriors[interiorChoice], shell.transform);
     }
 

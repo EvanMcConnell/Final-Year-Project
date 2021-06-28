@@ -8,4 +8,5 @@ public class Weapon : Item
     public int damage;
     public Resource[] recipe;
     public int[] quantities;
+    public RuntimeAnimatorController animatorController;
 }

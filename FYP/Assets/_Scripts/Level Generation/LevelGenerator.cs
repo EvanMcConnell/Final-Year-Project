@@ -153,6 +153,8 @@ public class LevelGenerator : MonoBehaviour
 
             yield return new WaitForEndOfFrame();
             yield return new WaitForEndOfFrame();
+            yield return new WaitForEndOfFrame();
+            yield return new WaitForEndOfFrame();
         }
 
         foreach (GameObject x in GameObject.FindGameObjectsWithTag("RoomSpawner"))
@@ -162,7 +164,7 @@ public class LevelGenerator : MonoBehaviour
 
         GameObject exit = GameObject.Find(roomsSpawned.ToString()).GetComponent<RoomSpawner>().spawnExit();
 
-        exit.name = nextLevelName;
+        exit.name = GameObject.Find("Level Manager").GetComponent<LevelManager>().nextLevelName;
 
 
         yield return new WaitForSecondsRealtime(2);

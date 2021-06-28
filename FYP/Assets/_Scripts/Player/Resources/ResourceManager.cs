@@ -104,6 +104,15 @@ public class ResourceManager : MonoBehaviour
         }
     }
 
+    public void clearResources()
+    {
+        wood = 0;
+        metal = 0;
+        gunpowder = 0;
+        
+        HUDManager.Instance.updateResourceCounters();
+    }
+
 
     private void Awake()
     {

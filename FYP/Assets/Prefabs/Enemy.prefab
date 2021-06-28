@@ -103,6 +103,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -222,6 +223,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -244,7 +246,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 576037461
-  m_SortingLayer: 4
+  m_SortingLayer: 3
   m_SortingOrder: 4
   m_Sprite: {fileID: -8421458170528590454, guid: 177a4f50af41d2743975236d08289f26,
     type: 3}
@@ -289,7 +291,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36f5a1d8852081540a123c5ec62c5cb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats: {fileID: 11400000, guid: 248a090db443928449a245ee1b6e3415, type: 2}
+  stats: {fileID: 11400000, guid: 0d0e716e196ba3d4e99835d37f50169c, type: 2}
   hbScalePoint: {fileID: 534502903703703845}
 --- !u!114 &534502903984931542
 MonoBehaviour:
@@ -433,9 +435,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentState: 1
   stoppingDistance: 1
+  sightRange: 5
   target: {fileID: 0}
-  nextWaypointIndex: 0
-  waypoints: []
+  targetWaypointIndex: 0
+  isDummy: 0
+  cooldown: 1
+  attackRange: 2
 --- !u!54 &534502904314769314
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -511,6 +516,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:

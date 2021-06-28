@@ -13,20 +13,18 @@ public class CutsceneDialogue : MonoBehaviour
     [SerializeField] Character character;
     [SerializeField] Image portrait;
 
-    void OnEnable() => StartCoroutine(startCutscene());
+    void OnEnable() {
+        Debug.Log("enabled, starting cutscene", gameObject);
+        StartCoroutine(startCutscene()); }
 
     private IEnumerator startCutscene()
     {
-
-        //GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = false;
-        //GameObject.Find("Player").GetComponentInChildren<AttackHandler>().enabled = false;
-
         GameObject Dialogue = GameObject.Find("Dialogue");
 
-        //DialogueBox = GameObject.Find("Cutscene Box");
         handler = Dialogue.GetComponent<DialogueHandler>();
         DialogueBox = Dialogue.transform.GetChild(1).gameObject;
-        portrait = DialogueBox.transform.GetChild(0).GetChild(2).GetChild(0).GetComponent<Image>();
+        portrait = DialogueBox.transform.GetChild(0).GetChild(1).GetChild(0).GetComponent<Image>();
+        print("protrait: "+portrait.gameObject.name);
 
         yield return new WaitForSecondsRealtime(wait);
 
@@ -40,14 +38,14 @@ public class CutsceneDialogue : MonoBehaviour
 
         handler.portrait = portrait;
 
-        //handler.dialogueText = DialogueBox.transform.GetChild(0).GetChild(1).GetChild(0).GetComponent<TMPro.TextMeshProUGUI>();
-
         handler.findCutsceneDialogue(firstLine, this);
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
             handler.findCutsceneDialogue(nextLine, this);
+        }
     }
 }

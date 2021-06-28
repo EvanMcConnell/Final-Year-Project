@@ -70,6 +70,7 @@ public class AttackHandler : MonoBehaviour
 
     public void setWeapon(Weapon newWeapon)
     {
+        gameObject.GetComponent<Animator>().runtimeAnimatorController = newWeapon.animatorController;
         attackStats = newWeapon;
         foreach (Image i in weaponImages)
             i.sprite = attackStats.image;

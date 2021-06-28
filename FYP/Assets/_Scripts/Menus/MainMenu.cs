@@ -50,6 +50,8 @@ public class MainMenu : MonoBehaviour
 
 
     public void Continue() => StartCoroutine(LoadScene("Hub"));
+    
+    public void Tutorial() => StartCoroutine(LoadScene("Tutorial"));
 
     public IEnumerator LoadScene(string sceneName)
     {

@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fe635612cbf7534292811c9c7a7402b, type: 3}
   m_Name: Machete
   m_EditorClassIdentifier: 
-  itemName: Machete
+  itemName: Sword
   image: {fileID: 8351234412787453970, guid: 009a2e7dcfe94b34db11b59590767b23, type: 3}
-  damage: 0
+  damage: 100
   recipe:
   - {fileID: 11400000, guid: 68f4d6526e354884b98679b28da026d1, type: 2}
   - {fileID: 11400000, guid: 3ec4db369c864eb48aee3524ce59ab3a, type: 2}
-  quantities: 0a00000002000000
+  quantities: 6400000064000000
+  animatorController: {fileID: 9100000, guid: 66f06d5d21429214889917f3ab57b615, type: 2}

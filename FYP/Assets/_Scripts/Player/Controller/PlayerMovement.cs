@@ -12,6 +12,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float moveSpeed;
     [SerializeField] bool facingRight = true;
     AttackHandler atk;
+
+    private AudioSource audio;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         weaponSprite = transform.GetChild(0).GetComponent<SpriteRenderer>();
         atk = GetComponentInChildren<AttackHandler>();
+        audio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -30,11 +33,17 @@ public class PlayerMovement : MonoBehaviour
 
         if (xInput != 0 || yInput != 0) { 
             rb.velocity = xInput!=0 && yInput!=0 ? new Vector3(xInput * (moveSpeed*.8f), 0,  yInput * (moveSpeed*.8f)) : new Vector3(xInput*moveSpeed, 0, yInput*moveSpeed); 
-            anim.SetBool("isWalking", true); 
+            anim.SetBool("isWalking", true);
+            
+            audio.volume = 1;
         } else {
             rb.velocity = new Vector2(0, 0);
-            anim.SetBool("isWalking", false); 
+            anim.SetBool("isWalking", false);
+            
+            audio.volume = 0;
         }
+        
+        if(Time.timeScale == 0) audio.volume = 0;
 
 
 

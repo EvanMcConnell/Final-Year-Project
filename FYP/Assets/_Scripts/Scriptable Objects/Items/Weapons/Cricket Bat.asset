@@ -14,4 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Cricket Bat
   image: {fileID: 977800004824086709, guid: 009a2e7dcfe94b34db11b59590767b23, type: 3}
-  damage: 50
+  damage: 20
+  recipe: []
+  quantities: 
+  animatorController: {fileID: 9100000, guid: eace4d1903eb4304fa811a8f357ef292, type: 2}

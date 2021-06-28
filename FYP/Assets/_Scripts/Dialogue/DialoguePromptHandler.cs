@@ -12,14 +12,15 @@ public class DialoguePromptHandler : MonoBehaviour
     [SerializeField] Character character;
     [SerializeField] string defaultDialogueOption;
     [SerializeField] bool cutscene;
+    [SerializeField] private CutsceneDialogue cutsceneDialogue;
     [SerializeField] Image portrait;
 
-    private void Start()
+    private IEnumerator Start()
     {
-        if (cutscene)
-        {
-            toggleDialogue();
-        }
+        yield return new WaitForEndOfFrame();
+        dialogueHandler = DialogueHandler.Instance;
+        dialogueBox = dialogueHandler.transform.GetChild(0).gameObject;
+        playerControlScript = GameObject.Find("Player").GetComponent<PlayerMovement>();
     }
 
     // Update is called once per frame
@@ -27,20 +28,28 @@ public class DialoguePromptHandler : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            toggleDialogue();
+            if (cutscene)
+                cutsceneDialogue.gameObject.SetActive(true);            
+            else
+                StartCoroutine(toggleDialogue());
         }
     }
 
-    public void toggleDialogue()
+    public IEnumerator toggleDialogue()
     {
+        dialogueHandler.currentCharacterPrompt = this;
+        dialogueHandler.possiblePortraits = character.portraits;
+        
+        yield return new WaitForEndOfFrame();
+        
         playerControlScript.enabled = !playerControlScript.isActiveAndEnabled;
         playerControlScript.gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
         dialogueHandler.portrait = portrait;
         dialogueHandler.shopBox.SetActive(false);
         dialogueBox.SetActive(!dialogueBox.activeInHierarchy);
         dialogueHandler.characterName = character.name;
-        dialogueHandler.possiblePortraits = character.portraits;
-        dialogueHandler.findDialogue(defaultDialogueOption);
-        dialogueHandler.currentCharacterPrompt = this;
+        print("control test" + playerControlScript.enabled);
+        if(playerControlScript.enabled == false)
+            dialogueHandler.findDialogue(defaultDialogueOption);
     }
 }

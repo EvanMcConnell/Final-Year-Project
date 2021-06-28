@@ -35,7 +35,6 @@ public class MenuButton : MonoBehaviour
 
     public void focusButton()
     {
-        print("we in here");
         menuHandler.PlayMenuAudio(0);
         text.text = "/ " + buttonText + " \\";
     }

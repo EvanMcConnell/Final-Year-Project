@@ -1,70 +1,181 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dialogues>
-	
-	<character name = "Johnson"> 
-		<dialogue id = "00" emotion="Neutral" content= "What's up kid?">
-				
-					<choice content= "[Shop]" target = "shop"></choice>
-					<choice content= "Question" target = "1"></choice>
-				
-		</dialogue>
-		<dialogue id = "01" emotion="Frustrated" content= "Ugh, fine. But make it quick, -haven't got all day." >
-				
-					<choice content= "What is it you do?" target = "2"></choice>
-					<choice content= "Nevermind." target = "0"></choice>
-				
-		</dialogue>
-		<dialogue id = "02" emotion="Happy" content= "The Golden globe, yes;aaaaaaaaa it is in the yellow house!">
-				
-					<choice content= "Thank you!" target = "-1"></choice>
-					<choice content= "Brilliant, would you also know about where to find the yellow house" target = "3"></choice>
-				
-		</dialogue>
-		<dialogue id = "03" emotion="Happy" content= "Of course, this house is about 100 meters north from here!">
-				
-					<choice content= "Thanks man; much appreciated!" target = "-1"></choice>
-					<choice content= "Fantastic!" target = "-1"></choice>
-				
-		</dialogue>
-    <dialogue id="tut1-1" emotion="Happy" content="Way to go, you've made it this far.">
-      
-      <choice target="tut1-2"/>
-      
-    </dialogue>
-    <dialogue id="tut1-2" emotion="Happy" content="Don't give up now!!">
 
-      <choice target="-1"/>
-      
-    </dialogue>
+    <!-- JOHNSON -->
+    <character name="Johnson">
+        <dialogue id="00" emotion="Neutral" content="What's up kid?">
 
-	</character>
-	<character name = "Mary"> 
-		<dialogue id = "00" content= "Hi! I'm Mary, the village blacksmith!">
-				
-					<choice content= "Hi there, would you know where I can find the golden globe?" target = "2"></choice>
-					<choice content= "Hi there, are you from here, Im kind of lost?" target = "1"></choice>
-				
-		</dialogue>
-		<dialogue id = "01" content= "Yes, Ive been living here for decades, what brings you here?" >
-				
-					<choice content= "I am looking for the golden globe" target = "2"></choice>
-					<choice content= "None of your business!" target = "-1"></choice>
-				
-		</dialogue>
-		<dialogue id = "02" content= "Haha, the Golden globe, yes; it is in the yellow house!">
-				
-					<choice content= "Thank you!" target = "-1"></choice>
-					<choice content= "Brilliant, would you also know about where to find the yellow house" target = "3"></choice>
-				
-		</dialogue>
-		<dialogue id = "03" content= "of course, this house is about 100 meters north from here!">
-				
-					<choice content= "Thanks man; much appreciated!" target = "-1"></choice>
-					<choice content= "Fantastic!" target = "-1"></choice>
-				
-		</dialogue>
+            <choice content="[Shop]" target="shop"/>
+            <choice content="Question" target="1"/>
 
-	</character>
+        </dialogue>
+        <dialogue id="01" emotion="Frustrated" content="Ugh, fine. But make it quick, -haven't got all day.">
 
-	
+            <choice content="What is it you do?" target="2"/>
+            <choice content="What do I do now?" target="5"/>
+
+        </dialogue>
+        <dialogue id="02" emotion="Happy" content="Oh, well I'm glad you've taken an interest. I handle the shop here. If you can bring me back enough resources I can trade it for better gear.">
+
+            <choice content="Thank you!" target="3"/>
+            <choice content="Meh..." target="4"/>
+
+        </dialogue>
+        <dialogue id="03" emotion="Happy" content="Nice to get some appreciation around here for once! Want me to run it by you one more time?">
+
+            <choice content="Sure" target="2"/>
+            <choice content="No thanks" target="0"/>
+
+        </dialogue>
+        <dialogue id="04" emotion="Frustrated" content="Jeez, ok! No need to be so rude about it. Want me to run it by you one more time?">
+
+            <choice content="Sure" target="2"/>
+            <choice content="No thanks" target="0"/>
+
+        </dialogue>
+        <dialogue id="05" emotion="Neutral" content="You see that door at the far end of the room? Out there's where the monsters are, it's not pretty out there but it's the only way out.">
+
+            <choice content="Bring it on!" target="6"/>
+            <choice content="Oh jeez." target="7"/>
+
+        </dialogue>
+        <dialogue id="06" emotion="Frustrated" content="I appreciate the enthusiasm, though I doubt that'll last long. Want me to run it by you one more time?">
+
+            <choice content="Sure" target="5"/>
+            <choice content="No thanks" target="0"/>
+
+        </dialogue>
+        <dialogue id="07" emotion="Happy" content="Well, at least you're not stupid. Don't worry though, with us working together I'm sure we'll get out of here. Want me to run it by you one more time?">
+
+            <choice content="Sure" target="5"/>
+            <choice content="No thanks" target="0"/>
+
+        </dialogue>
+
+        <!-- TUTORIAL DIALOGUE -->
+        <dialogue id="tut0-1" emotion="Happy" content="I'll be waiting up ahead...">
+
+            <choice target="-1"/>
+
+        </dialogue>
+        <dialogue id="tut0-2" emotion="Happy" content="Go on, use LEFT CLICK to attack...">
+
+            <choice target="-1"/>
+
+        </dialogue>
+        <dialogue id="tut1-1" emotion="Happy"
+                  content="Hey kid. So, there's a couple things you're gonna need to know if you're gonna make it out there.">
+
+            <choice target="tut1-2"/>
+
+        </dialogue>
+        <dialogue id="tut1-2" emotion="Happy" content="Meet me up ahead and we can get started.">
+
+            <choice target="-1"/>
+
+        </dialogue>
+        <dialogue id="tut2-1" emotion="Happy"
+                  content="Here we have a standard enemy, go ahead and give him a good thrashing.">
+
+            <choice target="tut2-2"/>
+
+        </dialogue>
+        <dialogue id="tut2-2" emotion="Happy" content="Oh, by the way, use LEFT CLICK to swing your weapon.">
+
+            <choice target="-1"/>
+
+        </dialogue>
+        <dialogue id="tut3-1" emotion="Happy" content="That there's a resource, enemies drop them when they die.">
+
+            <choice target="tut3-2"/>
+
+        </dialogue>
+        <dialogue id="tut3-2" emotion="Happy" content="Go ahead, pick it up. It's not gonna bite, probably.">
+
+            <choice target="-1"/>
+
+        </dialogue>
+        <dialogue id="tut4-1" emotion="Happy" content="Hey, you're finally awake...">
+
+            <choice target="tut4-2"/>
+
+        </dialogue>
+        <dialogue id="tut4-2" emotion="Happy" content="You look steady enough to walk on your own, go ahead and try.">
+
+            <choice target="tut4-3"/>
+
+        </dialogue>
+        <dialogue id="tut4-3" emotion="Happy" content="Use WASD, I'll be waiting for you over here.">
+
+            <choice target="-1"/>
+
+        </dialogue>
+        <dialogue id="tut5-1" emotion="Happy" content="Those will come in handy later.">
+
+            <choice target="tut5-2"/>
+
+        </dialogue>
+        <dialogue id="tut5-2" emotion="Happy" content="Not all the enemies you face will be so easy, keep going.">
+
+            <choice target="tut5-3"/>
+
+        </dialogue>
+        <dialogue id="tut5-3" emotion="Happy" content="I'll be waiting up ahead...">
+
+            <choice target="-1"/>
+
+        </dialogue>
+        <dialogue id="tut6-1" emotion="Happy" content="Showing people how to defend themselves isn't the only thing I'm good for you know.">
+
+            <choice target="tut6-2"/>
+
+        </dialogue>
+        <dialogue id="tut6-2" emotion="Happy" content="I can also provide you with new equipment if you bring me the resources I need.">
+
+            <choice target="tut6-3"/>
+
+        </dialogue>
+        <dialogue id="tut6-3" emotion="Happy" content="Come find me, if you're interested.">
+
+            <choice target="tut6-4"/>
+
+        </dialogue>
+        <dialogue id="checkpoint" emotion="Happy" content="If you want I can take you back to base, you'll get to keep your resources and spend them on upgrades. Or if you want, you can continue on. Though should you fall, you'll lose your loot. Decide carefully.">
+
+            <choice content="Head back" target="turnback"/>
+            <choice content="Keep going!" target="continue"/>
+
+        </dialogue>
+    </character>
+
+    <!-- MARY -->
+    <character name="Mary">
+        <dialogue id="00" content="Hi! I'm Mary, the village blacksmith!">
+
+            <choice content="Hi there, would you know where I can find the golden globe?" target="2"/>
+            <choice content="Hi there, are you from here, Im kind of lost?" target="1"/>
+
+        </dialogue>
+        <dialogue id="01" content="Yes, Ive been living here for decades, what brings you here?">
+
+            <choice content="I am looking for the golden globe" target="2"/>
+            <choice content="None of your business!" target="-1"/>
+
+        </dialogue>
+        <dialogue id="02" content="Haha, the Golden globe, yes; it is in the yellow house!">
+
+            <choice content="Thank you!" target="-1"/>
+            <choice content="Brilliant, would you also know about where to find the yellow house" target="3"/>
+
+        </dialogue>
+        <dialogue id="03" content="of course, this house is about 100 meters north from here!">
+
+            <choice content="Thanks man; much appreciated!" target="-1"/>
+            <choice content="Fantastic!" target="-1"/>
+
+        </dialogue>
+
+    </character>
+
+
 </dialogues>

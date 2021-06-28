@@ -55,10 +55,14 @@ Shader "Unlit/RGB_HSL1"
 
 			float4 frag(v2f i) : SV_Target
 			{
-			
-				//RGB -> HSL
 				float4 color = tex2D(_MainTex, i.uv);
 
+				if(color.r == color.g && color.g == color.b)
+				{
+					return color;
+				}
+				
+				//RGB -> HSL
 				float Cmax = max(max(color.r, color.g), color.b);
 				float Cmin = min(min(color.r, color.g), color.b);
 				float delta = Cmax - Cmin;
@@ -73,6 +77,17 @@ Shader "Unlit/RGB_HSL1"
 				float S =
 					delta == 0 ? 0 :
 					delta / (1 - abs((2 * L) - 1));
+
+				
+				// if (Cmax == color.r || Cmax == color.g) {
+				// 	H *= 0.7;
+				// 	S *= 0.9;
+				// 	L *= 1.25;
+				// }
+				// else {
+				// 	S *= 1.1;
+				// 	L *= 0.9;
+				// }
 
 
 				//HSL -> RBG

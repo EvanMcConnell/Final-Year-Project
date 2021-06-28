@@ -15,3 +15,6 @@ MonoBehaviour:
   itemName: Crowbar
   image: {fileID: 4538815440314434858, guid: 009a2e7dcfe94b34db11b59590767b23, type: 3}
   damage: 0
+  recipe: []
+  quantities: 
+  animatorController: {fileID: 9100000, guid: a4b53f63a4528774799b5b9efb4e8922, type: 2}

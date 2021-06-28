@@ -5,13 +5,15 @@ using UnityEngine;
 public class ResourceHolder : MonoBehaviour
 {
     [SerializeField] Resource[] possibleResources;
-    [SerializeField] int[] minMaxQuantity =  new int[2];
+    [SerializeField] int[] minMaxQuantity = new int[2];
+    [SerializeField] private List<GameObject> GOs;
     int quantity;
     Resource resource;
 
     private void Start()
     {
-        if (possibleResources.Length == 0) { 
+        if (possibleResources.Length == 0)
+        {
             print("Resource Spawner - No resources specified.");
             Destroy(gameObject);
         }
@@ -33,6 +35,11 @@ public class ResourceHolder : MonoBehaviour
             setResourceSprite(resource.resourceSprite);
 
             setResourceText(quantity.ToString());
+
+            Vector3 resourcePostion = transform.localPosition;
+
+            transform.localPosition =
+                new Vector3(resourcePostion.x, resourcePostion.y, resourcePostion.z - 2);
         }
     }
 
@@ -41,7 +48,7 @@ public class ResourceHolder : MonoBehaviour
         SpriteRenderer renderer = gameObject.GetComponentInChildren<SpriteRenderer>();
 
         renderer.sprite = newSprite;
-        renderer.sortingOrder = Mathf.RoundToInt(transform.position.z)*-100+1;
+        renderer.sortingOrder = Mathf.RoundToInt(transform.position.z) * -100 + 10;
     }
 
 
